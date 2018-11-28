@@ -1,0 +1,40 @@
+{
+    "name": "Registration",
+    "fields": [
+        {
+            "fieldName": "remoteAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remotePort",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "expires",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "userAgent",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contact",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "transport",
+            "fieldType": "Transport",
+            "fieldValues": "UDP,TCP,TLS"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181128132133",
+    "entityTableName": "registration",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,52 @@
+{
+    "name": "Peer",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "user",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "authUser",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "secret",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "port",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "transport",
+            "fieldType": "Transport",
+            "fieldValues": "UDP,TCP,TLS"
+        },
+        {
+            "fieldName": "register",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "qualify",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181128132132",
+    "entityTableName": "peer",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
