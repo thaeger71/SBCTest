@@ -1,0 +1,78 @@
+<div>
+    <h2 id="page-heading">
+        <span>Peers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-peer" [routerLink]="['/peer/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Peer
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="peers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>User</span></th>
+            <th><span>Auth User</span></th>
+            <th><span>Secret</span></th>
+            <th><span>Address</span></th>
+            <th><span>Port</span></th>
+            <th><span>Transport</span></th>
+            <th><span>Register</span></th>
+            <th><span>Qualify</span></th>
+            <th><span>Server</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let peer of peers ;trackBy: trackId">
+                <td><a [routerLink]="['/peer', peer.id, 'view' ]">{{peer.id}}</a></td>
+                <td>{{peer.name}}</td>
+                <td>{{peer.description}}</td>
+                <td>{{peer.user}}</td>
+                <td>{{peer.authUser}}</td>
+                <td>{{peer.secret}}</td>
+                <td>{{peer.address}}</td>
+                <td>{{peer.port}}</td>
+                <td>{{peer.transport}}</td>
+                <td>{{peer.register}}</td>
+                <td>{{peer.qualify}}</td>
+                <td>
+                    <div *ngIf="peer.server">
+                        <a [routerLink]="['../server', peer.server?.id, 'view' ]" >{{peer.server?.address}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/peer', peer.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/peer', peer.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'peer/'+ peer.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
