@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dialplanEntry">
+            <h2><span>Dialplan Entry</span> {{dialplanEntry.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>From Peer Match Type</span></dt>
+                <dd>
+                    <span>{{dialplanEntry.fromPeerMatchType}}</span>
+                </dd>
+                <dt><span>From Peer Match Exp</span></dt>
+                <dd>
+                    <span>{{dialplanEntry.fromPeerMatchExp}}</span>
+                </dd>
+                <dt><span>Destination</span></dt>
+                <dd>
+                    <span>{{dialplanEntry.destination}}</span>
+                </dd>
+                <dt><span>New Destination</span></dt>
+                <dd>
+                    <span>{{dialplanEntry.newDestination}}</span>
+                </dd>
+                <dt><span>Source</span></dt>
+                <dd>
+                    <span>{{dialplanEntry.source}}</span>
+                </dd>
+                <dt><span>New Source</span></dt>
+                <dd>
+                    <span>{{dialplanEntry.newSource}}</span>
+                </dd>
+                <dt><span>From Peer</span></dt>
+                <dd>
+                    <div *ngIf="dialplanEntry.fromPeer">
+                        <a [routerLink]="['/peer', dialplanEntry.fromPeer?.id, 'view']">{{dialplanEntry.fromPeer?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span>To Peer</span></dt>
+                <dd>
+                    <div *ngIf="dialplanEntry.toPeer">
+                        <a [routerLink]="['/peer', dialplanEntry.toPeer?.id, 'view']">{{dialplanEntry.toPeer?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/dialplan-entry', dialplanEntry.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

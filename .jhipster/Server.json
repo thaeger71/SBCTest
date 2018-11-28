@@ -1,0 +1,38 @@
+{
+    "name": "Server",
+    "fields": [
+        {
+            "fieldName": "address",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "port",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "transport",
+            "fieldType": "Transport",
+            "fieldValues": "UDP,TCP,TLS"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "peer",
+            "otherEntityName": "peer",
+            "otherEntityRelationshipName": "server"
+        }
+    ],
+    "changelogDate": "20181128141258",
+    "entityTableName": "server",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
