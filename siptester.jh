@@ -1,0 +1,58 @@
+enum Transport {
+	UDP,
+    TCP,
+    TLS
+}
+
+entity Server {
+	address String required,
+    port Integer,
+    transport Transport
+}
+
+entity Peer {
+    description String,
+    user String,
+    authUser String,
+    secret String,
+    address String,
+    port Integer,
+    transport Transport,
+    register Boolean,
+    qualify Integer
+}
+
+entity Registration{
+	remoteAddress String
+    remotePort Integer,
+    expires Integer,
+    userAgent String,
+    contact String,
+    transport Transport
+}
+
+enum MatchType{
+	IP, FROM_USER, TO_USER, CONTACT_USER, REQUEST_USER, MANUAL
+}
+
+entity DialplanEntry {
+	fromPeerMatchType MatchType required,
+    fromPeerMatchExp String,
+	destination String required,
+    newDestination String required,
+    source String required,
+    newSource String required
+}
+relationship ManyToOne {
+	DialplanEntry{fromPeer(name) required} to Peer 
+    DialplanEntry{toPeer(name) required} to Peer
+}
+
+
+relationship OneToMany {
+	Server to Peer{server(address) required}
+}
+
+relationship OneToMany {
+	Peer to Registration{peer(name) required}
+}
