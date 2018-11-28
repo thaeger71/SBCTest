@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="server">
+            <h2><span>Server</span> {{server.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Address</span></dt>
+                <dd>
+                    <span>{{server.address}}</span>
+                </dd>
+                <dt><span>Port</span></dt>
+                <dd>
+                    <span>{{server.port}}</span>
+                </dd>
+                <dt><span>Transport</span></dt>
+                <dd>
+                    <span>{{server.transport}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/server', server.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

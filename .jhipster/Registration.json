@@ -1,0 +1,48 @@
+{
+    "name": "Registration",
+    "fields": [
+        {
+            "fieldName": "remoteAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remotePort",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "expires",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "userAgent",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contact",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "transport",
+            "fieldType": "Transport",
+            "fieldValues": "UDP,TCP,TLS"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "xpeer",
+            "otherEntityName": "peer",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181128133548",
+    "entityTableName": "registration",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
