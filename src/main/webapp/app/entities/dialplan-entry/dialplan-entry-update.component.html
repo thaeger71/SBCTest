@@ -1,0 +1,116 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-dialplan-entry-heading">Create or edit a Dialplan Entry</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!dialplanEntry.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="dialplanEntry.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fromPeerMatchType">From Peer Match Type</label>
+                    <select class="form-control" name="fromPeerMatchType" [(ngModel)]="dialplanEntry.fromPeerMatchType" id="field_fromPeerMatchType"  required>
+                        <option value="IP">IP</option>
+                        <option value="FROM_USER">FROM_USER</option>
+                        <option value="TO_USER">TO_USER</option>
+                        <option value="CONTACT_USER">CONTACT_USER</option>
+                        <option value="REQUEST_USER">REQUEST_USER</option>
+                        <option value="MANUAL">MANUAL</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.fromPeerMatchType?.dirty && editForm.controls.fromPeerMatchType?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fromPeerMatchType?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fromPeerMatchExp">From Peer Match Exp</label>
+                    <input type="text" class="form-control" name="fromPeerMatchExp" id="field_fromPeerMatchExp"
+                        [(ngModel)]="dialplanEntry.fromPeerMatchExp" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_destination">Destination</label>
+                    <input type="text" class="form-control" name="destination" id="field_destination"
+                        [(ngModel)]="dialplanEntry.destination" required/>
+                    <div [hidden]="!(editForm.controls.destination?.dirty && editForm.controls.destination?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.destination?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_newDestination">New Destination</label>
+                    <input type="text" class="form-control" name="newDestination" id="field_newDestination"
+                        [(ngModel)]="dialplanEntry.newDestination" required/>
+                    <div [hidden]="!(editForm.controls.newDestination?.dirty && editForm.controls.newDestination?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.newDestination?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_source">Source</label>
+                    <input type="text" class="form-control" name="source" id="field_source"
+                        [(ngModel)]="dialplanEntry.source" required/>
+                    <div [hidden]="!(editForm.controls.source?.dirty && editForm.controls.source?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.source?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_newSource">New Source</label>
+                    <input type="text" class="form-control" name="newSource" id="field_newSource"
+                        [(ngModel)]="dialplanEntry.newSource" required/>
+                    <div [hidden]="!(editForm.controls.newSource?.dirty && editForm.controls.newSource?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.newSource?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fromPeer">From Peer</label>
+                    <select class="form-control" id="field_fromPeer" name="fromPeer" [(ngModel)]="dialplanEntry.fromPeer"  required>
+                        <option *ngIf="!editForm.value.fromPeer" [ngValue]="null" selected></option>
+                        <option [ngValue]="peerOption.id === dialplanEntry.fromPeer?.id ? dialplanEntry.fromPeer : peerOption" *ngFor="let peerOption of peers; trackBy: trackPeerById">{{peerOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.fromPeer?.dirty && editForm.controls.fromPeer?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fromPeer?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_toPeer">To Peer</label>
+                    <select class="form-control" id="field_toPeer" name="toPeer" [(ngModel)]="dialplanEntry.toPeer"  required>
+                        <option *ngIf="!editForm.value.toPeer" [ngValue]="null" selected></option>
+                        <option [ngValue]="peerOption.id === dialplanEntry.toPeer?.id ? dialplanEntry.toPeer : peerOption" *ngFor="let peerOption of peers; trackBy: trackPeerById">{{peerOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.toPeer?.dirty && editForm.controls.toPeer?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.toPeer?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
