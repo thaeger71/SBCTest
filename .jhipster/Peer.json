@@ -1,0 +1,78 @@
+{
+    "name": "Peer",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "user",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "authUser",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "secret",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "port",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "transport",
+            "fieldType": "Transport",
+            "fieldValues": "UDP,TCP,TLS"
+        },
+        {
+            "fieldName": "register",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "qualify",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "dialplanEntry",
+            "otherEntityName": "dialplanEntry",
+            "otherEntityRelationshipName": "fromPeer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "dialplanEntry",
+            "otherEntityName": "dialplanEntry",
+            "otherEntityRelationshipName": "toPeer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "registration",
+            "otherEntityName": "registration",
+            "otherEntityRelationshipName": "peer"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "server",
+            "otherEntityName": "server",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181128135018",
+    "entityTableName": "peer",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
