@@ -1,0 +1,70 @@
+{
+    "name": "DialplanEntry",
+    "fields": [
+        {
+            "fieldName": "fromPeerMatchType",
+            "fieldType": "MatchType",
+            "fieldValues": "IP,FROM_USER,TO_USER,CONTACT_USER,REQUEST_USER,MANUAL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fromPeerMatchExp",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "destination",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "newDestination",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "source",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "newSource",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "fromPeer",
+            "otherEntityName": "peer",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "toPeer",
+            "otherEntityName": "peer",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181128140809",
+    "entityTableName": "dialplan_entry",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

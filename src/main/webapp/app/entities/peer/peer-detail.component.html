@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="peer">
+            <h2><span>Peer</span> {{peer.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{peer.description}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    <span>{{peer.user}}</span>
+                </dd>
+                <dt><span>Auth User</span></dt>
+                <dd>
+                    <span>{{peer.authUser}}</span>
+                </dd>
+                <dt><span>Secret</span></dt>
+                <dd>
+                    <span>{{peer.secret}}</span>
+                </dd>
+                <dt><span>Address</span></dt>
+                <dd>
+                    <span>{{peer.address}}</span>
+                </dd>
+                <dt><span>Port</span></dt>
+                <dd>
+                    <span>{{peer.port}}</span>
+                </dd>
+                <dt><span>Transport</span></dt>
+                <dd>
+                    <span>{{peer.transport}}</span>
+                </dd>
+                <dt><span>Register</span></dt>
+                <dd>
+                    <span>{{peer.register}}</span>
+                </dd>
+                <dt><span>Qualify</span></dt>
+                <dd>
+                    <span>{{peer.qualify}}</span>
+                </dd>
+                <dt><span>Server</span></dt>
+                <dd>
+                    <div *ngIf="peer.server">
+                        <a [routerLink]="['/server', peer.server?.id, 'view']">{{peer.server?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/peer', peer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

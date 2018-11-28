@@ -1,0 +1,70 @@
+<div>
+    <h2 id="page-heading">
+        <span>Registrations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-registration" [routerLink]="['/registration/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Registration
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="registrations">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Remote Address</span></th>
+            <th><span>Remote Port</span></th>
+            <th><span>Expires</span></th>
+            <th><span>User Agent</span></th>
+            <th><span>Contact</span></th>
+            <th><span>Transport</span></th>
+            <th><span>Peer</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let registration of registrations ;trackBy: trackId">
+                <td><a [routerLink]="['/registration', registration.id, 'view' ]">{{registration.id}}</a></td>
+                <td>{{registration.remoteAddress}}</td>
+                <td>{{registration.remotePort}}</td>
+                <td>{{registration.expires}}</td>
+                <td>{{registration.userAgent}}</td>
+                <td>{{registration.contact}}</td>
+                <td>{{registration.transport}}</td>
+                <td>
+                    <div *ngIf="registration.peer">
+                        <a [routerLink]="['../peer', registration.peer?.id, 'view' ]" >{{registration.peer?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/registration', registration.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/registration', registration.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'registration/'+ registration.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
